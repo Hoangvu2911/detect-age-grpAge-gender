@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <title>How old do I look</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>How old do I look?</h1>
+            <p>Upload a photo of yourself and let the AI determine how old you look.</p>
+        </div>
+
+        <div class="content">
+            <div class="upload-section">
+                <div class="file-input-wrapper">
+                    <label for="fileInput" class="choose-file-btn">Choose File</label>
+                    <input type="file" id="fileInput" accept="image/*">
+                </div>
+                <span class="file-name" id="fileName">No file chosen</span>
+            </div>
+
+            <div class="preview-section" id="previewSection" style="display: none;">
+                <img id="previewImage" class="preview-image" alt="Preview">
+            </div>
+
+            <div style="text-align: center;">
+                <button class="scan-btn" id="scanBtn" disabled>Scan</button>
+            </div>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; color: #64748b;">Analyzing your photo with AI...</p>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-main">
+                    <h2 class="result-title">Your Facial Age</h2>
+                    <div class="result-age" id="resultAge"></div>
+                </div>
+
+                <div class="result-details">
+                    <div class="detail-card">
+                        <div class="detail-label">Age Group</div>
+                        <div class="detail-value" id="ageGroup"></div>
+                        <div class="detail-confidence" id="ageGroupConfidence"></div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="detail-label">Gender</div>
+                        <div class="detail-value" id="gender"></div>
+                        <div class="detail-confidence" id="genderConfidence"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+</html>

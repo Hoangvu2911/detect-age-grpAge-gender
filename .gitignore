@@ -1,0 +1,5 @@
+node_modules/
+venv/
+uploads/
+models/
+__pycache__/
