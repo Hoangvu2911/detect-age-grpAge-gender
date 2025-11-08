@@ -6,10 +6,7 @@ from PIL import Image
 import torch.nn as nn
 
 
-# =====================================================
-# 1️⃣  ĐỊNH NGHĨA MODEL
-# =====================================================
-
+#   Define model
 class Age_cnn(nn.Module):
     def __init__(self, input_channel, height, width):
         super().__init__()
@@ -127,7 +124,7 @@ class Age_group_cnn(nn.Module):
             nn.BatchNorm1d(32),
             nn.ReLU(),
 
-            nn.Linear(32, 6)  # 6 nhóm tuổi
+            nn.Linear(32, 6)  # 6 age group
         )
 
     def forward(self, x):
@@ -199,11 +196,7 @@ class Gender_cnn(nn.Module):
         x = self.flatten(x)
         return self.gender_fc(x)
 
-
-# =====================================================
-# 2️⃣  LOAD MODEL
-# =====================================================
-
+#  load image
 def load_model(model_class, model_path, *args):
     model = model_class(*args)
     try:
@@ -215,15 +208,12 @@ def load_model(model_class, model_path, *args):
                 checkpoint = checkpoint['state_dict']
         model.load_state_dict(checkpoint, strict=False)
     except Exception as e:
-        print(f"⚠️ Error loading model {model_path}: {e}", file=sys.stderr)
+        print(f" Error loading model {model_path}: {e}", file=sys.stderr)
     model.eval()
     return model
 
 
-# =====================================================
-# 3️⃣  TIỀN XỬ LÝ ẢNH
-# =====================================================
-
+# image processing
 def preprocess_image(image_path):
     transform = transforms.Compose([
         transforms.Resize((128, 128)),
@@ -235,10 +225,7 @@ def preprocess_image(image_path):
     return transform(image).unsqueeze(0)
 
 
-# =====================================================
-# 4️⃣  DỰ ĐOÁN
-# =====================================================
-
+#  predict
 def predict_age(model, image_tensor):
     with torch.no_grad():
         output = model(image_tensor)
@@ -275,10 +262,7 @@ def predict_gender(model, image_tensor):
     return {"gender": genders[idx], "confidence": round(confidence, 2)}
 
 
-# =====================================================
-# 5️⃣  MAIN
-# =====================================================
-
+# main
 def main():
     if len(sys.argv) < 2:
         print(json.dumps({"error": "No image path provided"}))

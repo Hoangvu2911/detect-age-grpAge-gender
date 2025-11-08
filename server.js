@@ -1,8 +1,8 @@
 const express = require('express');
-const multer = require('multer');
+const multer = require('multer');   //process uploaded images
 const path = require('path');
 const fs = require('fs');
-const { spawn } = require('child_process');
+const { spawn } = require('child_process'); //call python model
 
 const app = express();
 const PORT = 3000;
