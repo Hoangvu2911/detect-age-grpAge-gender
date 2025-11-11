@@ -8,9 +8,10 @@ Setup
 1.2 Windows (PowerShell or CMD):
     python -m venv .venv
     .venv\Scripts\activate
-
+	
 Then install Python dependencies:
     pip install torch torchvision pillow
+	
 2. Setup node js
 -Initialize npm project:
 	npm init -y
